@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { constructor } from 'jasmine';
 import { Goal } from '../goal';
 
 @Component({
   selector: 'app-goal',
   templateUrl: './goal.component.html',
   styleUrls: ['./goal.component.scss']
+  
 })
 export class GoalComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
 
   goals: Goal[] = [
     new Goal(1, 'Watch finding Nemo', 'Find an online version and watch merlin find his son',new Date(2020,3,14)),
@@ -29,10 +26,28 @@ export class GoalComponent implements OnInit {
     if (isComplete) {
       this.goals.splice(index,1);
     }
+  }
+  
+  deleteGoal(isComplete: any, index: number){
+    if (isComplete) {
+      let toDelete = confirm(`Are you sure you want to delete ${this.goals[index].name}?`)
 
-  constructor() { }
-
-  this.ngOnInit(): void {
+      if (toDelete){
+        this.goals.splice(index,1)
+      }
+    }
   }
 
-};
+  addNewGoal(goal: Goal){
+    let goalLength = this.goals.length;
+    goal.id = goalLength+1;
+    goal.completeDate = new Date(goal.completeDate)
+    this.goals.push(goal)
+  }
+  
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}

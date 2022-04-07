@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { constructor } from 'jasmine';
 import { Goal } from '../../goal';
 
 @Component({
@@ -8,19 +7,21 @@ import { Goal } from '../../goal';
   styleUrls: ['./goal-detail.component.scss']
 })
 export class GoalDetailComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
 
   @Input() goal!: Goal;
   @Output() isComplete = new EventEmitter<boolean>();
 
   goalComplete(complete:boolean){
     this.isComplete.emit(complete);
+  }
+  
+  goalDelete(complete:boolean){
+    this.isComplete.emit(complete);
+  }
+  
+  constructor() { }
 
-  constructor() ;{ };
+  ngOnInit(): void {
+  }
 
-  this.ngOnInit(); void {
-  };
-
-}}
+}
